@@ -7,7 +7,11 @@ const Users = ({userPromise}) => {
 
     return (
         <div>
-            
+            <div>
+                {
+                    users.map(user => <p key={user.id}>{user.name} : {user.email}</p>)
+                }
+            </div>
         </div>
     );
 };
