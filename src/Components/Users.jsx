@@ -1,8 +1,11 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 
 const Users = ({userPromise}) => {
 
-    const users = use(userPromise)
+    const initialUsers = use(userPromise)
+
+    // all states
+    const [users, setUsers] = useState(initialUsers)
     // console.log(users);
     
     // event handler 
@@ -20,7 +23,11 @@ const Users = ({userPromise}) => {
             },
             body: JSON.stringify(user)
         }).then(res => res.json())
-        .then(data => console.log(data))
+        .then(data =>  {
+            console.log(data)
+            const newUsers = [...users, data]
+            setUsers(newUsers)
+        })
     }
 
     return (
